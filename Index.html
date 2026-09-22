@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHAUDHARY KAPADA PASAL</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f5f5f5;
+  color:#222;
+}
+
+header{
+  background:#111;
+  color:white;
+  padding:16px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.cart{
+  background:#ff5722;
+  padding:10px 15px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.hero{
+  background:linear-gradient(135deg,#111,#444);
+  color:white;
+  text-align:center;
+  padding:70px 20px;
+}
+
+.hero h1{
+  font-size:38px;
+  margin-bottom:12px;
+}
+
+.hero p{
+  font-size:18px;
+  margin-bottom:25px;
+}
+
+.shop{
+  background:#ff5722;
+  color:white;
+  padding:13px 28px;
+  border-radius:25px;
+  font-size:16px;
+  border:0;
+  cursor:pointer;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 18px;
+}
+
+.search{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+  margin-bottom:20px;
+}
+
+.categories{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+  overflow:auto;
+}
+
+.cat{
+  background:white;
+  padding:10px 18px;
+  border-radius:20px;
+  white-space:nowrap;
+  border:0;
+  cursor:pointer;
+}
+
+.cat:hover{
+  background:#ff5722;
+  color:white;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:20px;
+}
+
+.product{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 3px 12px #ddd;
+}
+
+.product img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.info{
+  padding:15px;
+}
+
+.info h3{
+  margin-bottom:8px;
+}
+
+.price{
+  color:#ff5722;
+  font-size:19px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.add{
+  width:100%;
+  padding:11px;
+  background:#111;
+  color:white;
+  border-radius:8px;
+  border:0;
+  cursor:pointer;
+}
+
+.cartbox{
+  display:none;
+  background:white;
+  margin-top:30px;
+  padding:20px;
+  border-radius:15px;
+}
+
+.cartitem{
+  padding:12px 0;
+  border-bottom:1px solid #ddd;
+}
+
+.cartitem button{
+  margin-top:8px;
+  padding:6px 10px;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.checkout{
+  margin-top:20px;
+}
+
+.checkout input,
+.checkout textarea{
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #ddd;
+  border-radius:8px;
+}
+
+.checkout textarea{
+  height:90px;
+}
+
+.whatsapp{
+  background:#25D366;
+  color:white;
+  padding:13px;
+  width:100%;
+  border-radius:8px;
+  margin-top:10px;
+  border:0;
+  font-size:16px;
+  cursor:pointer;
+}
+
+footer{
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:40px;
+}
+
+footer p{
+  margin-top:8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🛍️ CHAUDHARY KAPADA PASAL
+</div>
+
+<div class="cart" onclick="showCart()">
+🛒 Cart: <span id="count">0</span>
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<h1>CHAUDHARY KAPADA PASAL</h1>
+
+<p>Latest Clothes & Shoes at Great Prices</p>
+
+<button class="shop"
+onclick="document.getElementById('products').scrollIntoView()">
+Shop Now 🛍️
+</button>
+
+</section>
+
+
+<div class="container">
+
+<input
+id="search"
+class="search"
+placeholder="🔍 Search products..."
+onkeyup="searchProducts()"
+>
+
+
+<div class="categories">
+
+<button class="cat" onclick="filter('all')">
+All
+</button>
+
+<button class="cat" onclick="filter('clothing')">
+👕 Clothing
+</button>
+
+<button class="cat" onclick="filter('shoes')">
+👟 Shoes
+</button>
+
+</div>
+
+
+<div id="products" class="products">
+
+
+<div class="product"
+data-category="clothing"
+data-name="Premium T-Shirt">
+
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80">
+
+<div class="info">
+
+<h3>Premium T-Shirt</h3>
+
+<div class="price">
+NPR 999
+</div>
+
+<button class="add"
+onclick="add('Premium T-Shirt',999)">
+Add to Cart
+</button>
+
+</div>
+</div>
+
+
+
+<div class="product"
+data-category="clothing"
+data-name="Stylish Jeans">
+
+<img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=600&q=80">
+
+<div class="info">
+
+<h3>Stylish Jeans</h3>
+
+<div class="price">
+NPR 1,799
+</div>
+
+<button class="add"
+onclick="add('Stylish Jeans',1799)">
+Add to Cart
+</button>
+
+</div>
+</div>
+
+
+
+<div class="product"
+data-category="shoes"
+data-name="Casual Shoes">
+
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80">
+
+<div class="info">
+
+<h3>Casual Shoes</h3>
+
+<div class="price">
+NPR 2,499
+</div>
+
+<button class="add"
+onclick="add('Casual Shoes',2499)">
+Add to Cart
+</button>
+
+</div>
+</div>
+
+
+
+<div class="product"
+data-category="shoes"
+data-name="Sports Shoes">
+
+<img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80">
+
+<div class="info">
+
+<h3>Sports Shoes</h3>
+
+<div class="price">
+NPR 2,999
+</div>
+
+<button class="add"
+onclick="add('Sports Shoes',2999)">
+Add to Cart
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<div id="cartbox" class="cartbox">
+
+<h2>🛒 Your Cart</h2>
+
+<br>
+
+<div id="cartitems"></div>
+
+<br>
+
+<h3>
+Total: NPR <span id="total">0</span>
+</h3>
+
+
+<div class="checkout">
+
+<h3>📦 Delivery Details</h3>
+
+<input
+id="name"
+placeholder="Your Name"
+>
+
+<input
+id="phone"
+placeholder="Phone Number"
+>
+
+<textarea
+id="address"
+placeholder="Delivery Address">
+</textarea>
+
+
+<button class="whatsapp"
+onclick="orderWhatsApp()">
+
+📲 Order on WhatsApp
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<h3>CHAUDHARY KAPADA PASAL</h3>
+
+<p>🚚 Cash on Delivery Available</p>
+
+<p>💳 Online Payment Available</p>
+
+<p>📲 WhatsApp: +977 9811992332</p>
+
+<p>© 2026 Chaudhary Kapada Pasal</p>
+
+</footer>
+
+
+<script>
+
+let cart=[];
+
+const whatsapp="9779811992332";
+
+
+function add(name,price){
+
+let item=cart.find(x=>x.name===name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+name:name,
+price:price,
+qty:1
+});
+
+}
+
+update();
+
+alert(name+" added to cart!");
+
+}
+
+
+function update(){
+
+document.getElementById("count").innerText=
+cart.reduce((a,b)=>a+b.qty,0);
+
+
+let html="";
+
+let total=0;
+
+
+cart.forEach((x,i)=>{
+
+let sub=x.price*x.qty;
+
+total+=sub;
+
+
+html+=`
+
+<div class="cartitem">
+
+<b>${x.name}</b>
+
+<br>
+
+NPR ${x.price} × ${x.qty}
+
+= NPR ${sub}
+
+<br>
+
+<button onclick="change(${i},-1)">
+➖
+</button>
+
+<button onclick="change(${i},1)">
+➕
+</button>
+
+<button onclick="removeItem(${i})">
+❌ Remove
+</button>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("cartitems").innerHTML=
+html || "Cart is empty";
+
+
+document.getElementById("total").innerText=total;
+
+}
+
+
+function change(i,n){
+
+cart[i].qty+=n;
+
+if(cart[i].qty<=0){
+
+cart.splice(i,1);
+
+}
+
+update();
+
+}
+
+
+function removeItem(i){
+
+cart.splice(i,1);
+
+update();
+
+}
+
+
+function showCart(){
+
+document.getElementById("cartbox").style.display="block";
+
+document.getElementById("cartbox")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+update();
+
+}
+
+
+function searchProducts(){
+
+let q=
+document.getElementById("search")
+.value
+.toLowerCase();
+
+
+document.querySelectorAll(".product")
+.forEach(p=>{
+
+p.style.display=
+p.dataset.name
+.toLowerCase()
+.includes(q)
+?"block"
+:"none";
+
+});
+
+}
+
+
+function filter(category){
+
+document.querySelectorAll(".product")
+.forEach(p=>{
+
+p.style.display=
+category==="all" ||
+p.dataset.category===category
+?"block"
+:"none";
+
+});
+
+}
+
+
+function orderWhatsApp(){
+
+if(cart.length===0){
+
+alert("Your cart is empty!");
+
+return;
+
+}
+
+
+let name=
+document.getElementById("name").value;
+
+let phone=
+document.getElementById("phone").value;
+
+let address=
+document.getElementById("address").value;
+
+
+if(!name || !phone || !address){
+
+alert("Please fill all delivery details.");
+
+return;
+
+}
+
+
+let message=
+"🛍️ *CHAUDHARY KAPADA PASAL ORDER*%0A%0A";
+
+
+message+=
+"👤 Name: "+name+"%0A";
+
+message+=
+"📞 Phone: "+phone+"%0A";
+
+message+=
+"📍 Address: "+address+"%0A%0A";
+
+message+=
+"*Products:*%0A";
+
+
+let total=0;
+
+
+cart.forEach(x=>{
+
+let sub=x.price*x.qty;
+
+total+=sub;
+
+message+=
+"• "+x.name+
+" × "+x.qty+
+" = NPR "+sub+"%0A";
+
+});
+
+
+message+=
+"%0A💰 *Total: NPR "+total+"*%0A";
+
+message+=
+"💵 Payment: Cash on Delivery";
+
+
+window.open(
+"https://wa.me/"+whatsapp+
+"?text="+message,
+"_blank"
+);
+
+}
+
+
+update();
+
+</script>
+
+</body>
+</html>
